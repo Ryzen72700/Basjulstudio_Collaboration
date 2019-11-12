@@ -1,3 +1,7 @@
+# 오랜만에 밧줄봇 커밋!
+# 소스는 아니고 그냥 Hoxy나 쓰실분을 위해 주석으로 설명 추가해놓을게요
+
+# ↓ 모듈 로드
 import discord
 import datetime
 import requests
@@ -13,7 +17,7 @@ client = discord.Client()
 async def on_ready():
     print("Basjul Studio // Made with XxPKBxX#4684 X 리스트 반월#1134")
 
-@client.event
+@client.event #서버 규정 ✅로 체크확인(이모지 사용)
 async def on_raw_reaction_add(payload):
     guild = client.get_guild(598378147339304961)
     member = guild.get_member(payload.user_id)
@@ -23,15 +27,15 @@ async def on_raw_reaction_add(payload):
         await member.add_roles(user_role_get)
         await member.remove_roles(unveri_role_get)
 
-@client.event
+@client.event #접두사+커맨드
 async def on_message(message):
     if message.author.bot:
         return
-    if not message.content.startswith("밧줄님 "):
+    if not message.content.startswith("밧줄님 "): #접두사
         return
     command = message.content[4:].split()[0]
     commandline = message.content.split()[1:]
-    if command == "랜덤냥":
+    if command == "랜덤냥": #아래부터 커맨드
         try:
             response = requests.get("http://aws.random.cat/meow").json()
         except Exception as error:
